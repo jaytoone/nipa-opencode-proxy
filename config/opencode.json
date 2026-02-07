@@ -1,0 +1,62 @@
+{
+  "$schema": "./opencode-schema.json",
+  "model": "kimi-k2.5",
+  "description": "NIPA Kimi K2.5 with token-aware compaction",
+  "proxy": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 3456,
+    "ssl": false,
+    "timeout": 30000
+  },
+  "tokenEstimator": {
+    "enabled": true,
+    "strategy": "adaptive",
+    "adaptive": {
+      "learningRate": 0.1,
+      "windowSize": 10,
+      "confidenceThreshold": 0.8
+    },
+    "static": {
+      "threshold": 0.6
+    }
+  },
+  "compaction": {
+    "mode": "smart",
+    "smart": {
+      "baseThreshold": 0.5,
+      "minThreshold": 0.4,
+      "maxThreshold": 0.7,
+      "contextPreservation": "high"
+    },
+    "preservePatterns": [
+      "^import\\s+",
+      "^export\\s+",
+      "^function\\s+\\w+\\s*\\(",
+      "^class\\s+\\w+",
+      "TODO|FIXME|NOTE|HACK"
+    ],
+    "summarization": {
+      "model": "kimi-k2.5",
+      "maxSummaryTokens": 500,
+      "includeToolCalls": true,
+      "includeFileChanges": true
+    }
+  },
+  "costTracking": {
+    "enabled": true,
+    "logLevel": "info",
+    "dashboard": {
+      "enabled": true,
+      "port": 3457,
+      "refreshInterval": 5000
+    }
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/proxy.log",
+    "maxSize": "10m",
+    "maxFiles": 5,
+    "console": true
+  }
+}

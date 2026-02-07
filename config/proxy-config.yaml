@@ -1,0 +1,102 @@
+# NIPA-OpenCode Proxy Configuration
+# Copy this file to proxy-config.local.yaml for local changes
+
+proxy:
+  host: localhost
+  port: 3456
+  
+  # SSL Configuration (optional)
+  ssl:
+    enabled: false
+    cert: ./certs/server.crt
+    key: ./certs/server.key
+  
+  # Connection settings
+  timeout: 30000
+  keepAlive: true
+  maxConnections: 100
+
+# NIPA API Configuration
+nipa:
+  baseUrl: https://api.nipa.cloud
+  endpoint: /v1/chat/completions
+  
+  # Authentication
+  auth:
+    type: bearer
+    tokenEnv: NIPA_API_KEY
+  
+  # Model configuration
+  model: kimi-k2.5
+  maxTokens: 8192
+  temperature: 0.7
+
+# Token Estimation
+tokenEstimator:
+  enabled: true
+  
+  # Strategy: static | adaptive | predictive
+  strategy: adaptive
+  
+  # Adaptive strategy settings
+  adaptive:
+    learningRate: 0.1
+    windowSize: 10
+    confidenceThreshold: 0.8
+    
+  # Static strategy settings
+  static:
+    threshold: 0.6
+
+# Compaction Settings
+compaction:
+  enabled: true
+  
+  # Mode: smart | aggressive | conservative
+  mode: smart
+  
+  smart:
+    baseThreshold: 0.5
+    minThreshold: 0.4
+    maxThreshold: 0.7
+    contextPreservation: high
+    
+  # Patterns to preserve during compaction
+  preservePatterns:
+    - '^import\s+'
+    - '^export\s+'
+    - '^function\s+\w+\s*\('
+    - '^class\s+\w+'
+    - 'TODO|FIXME|NOTE|HACK'
+    - 'error|exception|throw'
+  
+  summarization:
+    model: kimi-k2.5
+    maxTokens: 500
+    includeToolCalls: true
+    includeFileChanges: true
+
+# Cost Tracking
+costTracking:
+  enabled: true
+  
+  # Pricing for Kimi K2.5 (update with actual rates)
+  pricing:
+    inputPer1K: 0.005
+    outputPer1K: 0.015
+    cacheDiscount: 0.5
+  
+  # Dashboard
+  dashboard:
+    enabled: true
+    port: 3457
+    refreshInterval: 5000
+
+# Logging
+logging:
+  level: info
+  file: logs/proxy.log
+  maxSize: 10m
+  maxFiles: 5
+  console: true
+  format: json
