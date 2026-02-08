@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+
+  "_agents_backup": {
+    "_note": "비활성화됨 - claude-flow 내장 에이전트 사용 중",
+    "sisyphus": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.3
+    },
+    "hephaestus": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.2
+    },
+    "oracle": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.4
+    },
+    "librarian": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.5
+    },
+    "explore": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.3
+    },
+    "prometheus": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.3
+    },
+    "metis": {
+      "model": "nipa-kimi-k25/Kimi-K2.5",
+      "temperature": 0.4
+    }
+  },
+
+  "agents": {},
+
+  "experimental": {
+    "preemptive_compaction_threshold": 0.70,
+    "compaction_timeout": 90,
+    "aggressive_truncation": true,
+    "truncate_all_tool_outputs": true,
+    "dcp_for_compaction": true,
+    "auto_resume": true
+  },
+
+  "disabled_hooks": [
+    "todo-continuation-enforcer",
+    "test-hook-debug",
+    "background-notification",
+    "session-notification",
+    "context-window-monitor",
+    "auto-update-checker"
+  ],
+
+  "notification": {
+    "force_enable": false
+  }
+}

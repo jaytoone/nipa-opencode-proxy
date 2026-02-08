@@ -1,0 +1,32 @@
+{
+  "$schema": "NIPA Model Configuration",
+  "description": "모델 변경 시 이 파일만 수정하면 됩니다",
+
+  "current_model": {
+    "name": "Kimi-K2.5",
+    "model_id": "Kimi-K2.5",
+    "provider_id": "nipa-kimi-k25",
+    "context_limit": 262144,
+    "context_limit_display": "256K",
+    "parameters": "1T MoE"
+  },
+
+  "available_models": {
+    "kimi-k25": {
+      "name": "Kimi-K2.5",
+      "model_id": "Kimi-K2.5",
+      "provider_id": "nipa-kimi-k25",
+      "context_limit": 262144,
+      "notes": "1T MoE, 4-bit quantization, 256K context"
+    },
+    "glm-47": {
+      "name": "GLM-4.7",
+      "model_id": "zai-org/GLM-4.7",
+      "provider_id": "nipa-glm-tool-calling",
+      "context_limit": 128000,
+      "notes": "9B parameters, 128K context"
+    }
+  },
+
+  "last_updated": "2026-02-07"
+}

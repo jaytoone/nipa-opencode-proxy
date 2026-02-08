@@ -1,0 +1,81 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "nipa-kimi-k25": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NIPA Kimi-K2.5 (Tool Calling + Reasoning)",
+      "options": {
+        "baseURL": "http://localhost:10347/v1",
+        "includeUsage": true
+      },
+      "models": {
+        "Kimi-K2.5": {
+          "name": "Kimi-K2.5 (1T MoE, 256K Context)",
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 20000
+          }
+        }
+      }
+    }
+  },
+  "model": "nipa-kimi-k25/Kimi-K2.5",
+  "theme": "opencode",
+  "autoupdate": true,
+  "permission": "allow",
+  "snapshot": true,
+  "compaction": {
+    "auto": false
+  },
+  "plugin": [
+    "oh-my-opencode"
+  ],
+  "agent": {
+    "plan": {
+      "enabled": true,
+      "model": "nipa-kimi-k25/Kimi-K2.5"
+    },
+    "build": {
+      "enabled": true,
+      "model": "nipa-kimi-k25/Kimi-K2.5"
+    }
+  },
+  "mcp": {
+    "playwright-session-1": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "playwright-session-2": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "playwright-session-3": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "playwright-session-4": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "repomix": {
+      "type": "local",
+      "command": ["npx", "-y", "repomix-mcp@latest"],
+      "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "claude-flow": {
+      "type": "local",
+      "command": ["npx", "-y", "claude-flow@v3alpha", "mcp", "start"],
+      "enabled": true
+    }
+  }
+}
